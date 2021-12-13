@@ -1,0 +1,130 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100vw;
+}
+
+h1.title {
+  text-align: center;
+}
+
+section.section {
+  padding: 4rem 1.5rem;
+}
+
+.space {
+  height: 2rem;
+}
+
+.example {
+  display: flex;
+  justify-content: space-between;
+}
+
+.example section, .example aside {
+  flex-basis: calc(50% - 1.25rem);
+}
+
+.wrapper {
+  display: grid;
+}
+
+.wrapper div {
+  background-color: #e91e63;
+  border: 1px solid #fff;
+  border-radius: 0.2rem;
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper#grid-tracks{
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+}
+
+.wrapper#gtr-px {
+  display: grid;
+  grid-template-rows: 50px 100px
+}
+
+.wrapper#gtc-px {
+  display: grid;
+  grid-template-columns: 90px 50px 120px
+}
+
+.wrapper#gtc-fr {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr
+}
+
+.wrapper#gtc-mix {
+  display: grid;
+  grid-template-columns: 3rem 25% 1fr 2fr
+}
+
+.wrapper#gtrcr {
+  display: grid;
+  grid-template-rows:    repeat(4, 100px);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.wrapper#gtrcr2 {
+  display: grid;
+  grid-template-columns: 30px repeat(3, 1fr) 30px;
+}
+
+.wrapper#grcg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap:    20px;
+  grid-column-gap: 5rem;
+}
+
+.wrapper#gg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 100px 1em;
+}
+
+.wrapper#gg2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2em;
+}
+
+.wrapper .bc-teal {
+  background-color: #009688;
+}
+
+.wrapper#grcse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.wrapper#grcse div:first-child {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.wrapper#grc {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.wrapper#grc div:first-child {
+  grid-row:    2;
+  grid-column: 3 / 4;
+}
+
+.wrapper#gra {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.wrapper#gra div:first-child {
+  grid-area: 2 / 2 / 3 / 3
+}

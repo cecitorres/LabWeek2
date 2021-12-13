@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Lab Week 2 - CSS Layouts</title>
+</head>
+<body>
+  <main>
+    <section class="section">
+      <h1 class="title">Learn CSS Grid ✨</h1>
+      <p>CSS Grid Layout (aka “Grid” or “CSS Grid”), is a two-dimensional grid-based layout system that, compared to any web layout system of the past, completely changes the way we design user interfaces.</p>
+      <p>CSS has always been used to layout our web pages, but it’s never done a very good job of it. First, we used tables, then floats, positioning and inline-block, but all of these methods were essentially hacks and left out a lot of important functionality (vertical centering, for instance).</p>
+      <p>Flexbox is also a very great layout tool, but its one-directional flow has different use cases — and they actually work together quite well! Grid is the very first CSS module created specifically to solve the layout problems we’ve all been hacking our way around for as long as we’ve been making websites.</p>
+    </section>
+    <section class="section">
+      <h2>Grid Container</h2>
+      <p>We create a grid container by declaring <code>display: grid</code> or <code>display: inline-grid</code> on an element. As soon as we do this, all direct children of that element become grid items.</p>
+      <div class="example">
+        <section>
+<pre>
+  <code>
+    &lt;div class="wrapper"&gt;
+      &lt;div&gt;One&lt;/div&gt;
+      &lt;div&gt;Two&lt;/div&gt;
+      &lt;div&gt;Three&lt;/div&gt;
+      &lt;div&gt;Four&lt;/div&gt;
+      &lt;div&gt;Five&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;style&gt;
+      .wrapper {
+        display: grid;
+      }
+    &lt;/style&gt;
+  </code>
+</pre>
+        </section>
+        <aside>
+          <div class="wrapper">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Explicit Grid</h2>
+      <p>Explicitly set a grid by creating columns and rows with the <code>grid-template-columns</code> and <code>grid-template-rows</code> properties. These define grid tracks. A grid track is the space between any two lines on the grid.</p>
+      <div class="example">
+        <section>
+<pre>
+  <code>
+    &lt;div class="wrapper"&gt;
+      &lt;div&gt;One&lt;/div&gt;
+      &lt;div&gt;Two&lt;/div&gt;
+      &lt;div&gt;Three&lt;/div&gt;
+      &lt;div&gt;Four&lt;/div&gt;
+      &lt;div&gt;Five&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;style&gt;
+      .wrapper {
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+      }
+    &lt;/style&gt;
+  </code>
+</pre>
+        </section>
+        <aside>
+          <div class="wrapper" id="grid-tracks">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+          </div>
+        </aside>
+      </div>
+      <!-- grid template rows pixels -->
+      <div class="example">
+        <section>
+          <code>
+            grid-template-rows: 50px 100px
+          </code>
+          <p>A row track is created for each value specified for grid-template-rows. Track size values can be any non-negative, length value (px, %, em, etc.)</p>
+
+          <p>Items 1 and 2 have fixed heights of 50px and 100px.</p>
+            
+          <p>Because only 2 row tracks were defined, heights of items 3 and 4 are defined by the contents of each.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gtr-px">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <!-- grid template columns pixels -->
+      <div class="example">
+        <section>
+          <code>
+            grid-template-columns: 90px 50px 120px
+          </code>
+          <p>Like rows, a column track is created for each value specified for grid-template-columns.</p>
+
+          <p>Items 4, 5 and 6 were placed on a new row track because only 3 column track sizes were defined; and because they were placed in column tracks 1, 2 and 3, their column sizes are equal to items 1, 2 and 3.</p>
+            
+          <p>Grid items 1, 2 and 3 have fixed widths of 90px, 50px and 120px respectively.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gtc-px">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+            <div>Six</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <!-- grid template columns fr -->
+      <div class="example">
+        <section>
+          <code>
+            grid-template-columns: 1fr 1fr 2fr
+          </code>
+          <p>The fr unit helps create flexible grid tracks. It represents a fraction of the available space in the grid container (works like Flexbox’s unitless values).</p>
+
+          <p>In this example, items 1 and 2 take up the first two (of four) sections while item 3 takes up the last two.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gtc-fr">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <!-- grid template columns mix -->
+      <div class="example">
+        <section>
+          <code>
+            grid-template-columns: 3rem 25% 1fr 2fr
+          </code>
+          <p>fr is calculated based on the remaining space when combined with other length values.</p>
+
+          <p>In this example, 3rem and 25% would be subtracted from the available space before the size of fr is calculated:
+            1fr = ((width of grid) - (3rem) - (25% of width of grid)) / 3</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gtc-mix">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Repeating Grid Tracks</h2>
+      <p>Define repeating grid tracks using the <code>repeat()</code> notation. This is useful for grids with items with equal sizes or many items.</p>
+      <div class="example">
+        <section>
+
+<pre>
+  <code>
+    grid-template-rows:    repeat(4, 100px);
+    grid-template-columns: repeat(3, 1fr);
+  </code>
+</pre>
+          <p>The repeat() notation accepts 2 arguments: the first represents the number of times the defined tracks should repeat, and the second is the track definition.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gtrcr">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+            <div>Six</div>
+            <div>Seven</div>
+            <div>Eight</div>
+            <div>Nine</div>
+            <div>Ten</div>
+            <div>Eleven</div>
+            <div>Twelve</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <div class="example">
+        <section>
+          <code>
+            grid-template-columns: 30px repeat(3, 1fr) 30px
+          </code>
+          <p>repeat() can also be used within track listings.</p>
+          <p>In this example, the first and last column tracks have widths of 30px, and the 3 column tracks in between, created by repeat(), have widths of 1fr each.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gtrcr2">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+            <div>Six</div>
+            <div>Seven</div>
+            <div>Eight</div>
+            <div>Nine</div>
+            <div>Ten</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Grid Gaps (Gutters)</h2>
+      <p>The <code>grid-column-gap</code> and <code>grid-row-gap</code> properties create gutters between columns and rows.</p>
+      <p>Grid gaps are only created in between columns and rows, and not along the edge of the grid container.</p>
+      <div class="example">
+        <section>
+          <code>
+            grid-row-gap:    20px;
+            grid-column-gap: 5rem;
+          </code>
+          <p>Gap size values can be any non-negative, length value (px, %, em, etc.)</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="grcg">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <div class="example">
+        <section>
+          <code>
+            grid-gap: 100px 1em
+          </code>
+          <p>grid-gap is shorthand for grid-row-gap and grid-column-gap.</p>
+          <p>If two values are specified, the first represents grid-row-gap and the second grid-column-gap.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gg">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <div class="example">
+        <section>
+          <code>
+            grid-gap: 2rem
+          </code>
+          <p>One value sets equal row and column gaps.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gg2">
+            <div>One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="section">
+      <h2>Positioning Items by Grid Line Numbers</h2>
+      <p>Grid lines are essentially lines that represent the start of, the end of, or between column and row tracks.</p>
+      <p>Each line, starting from the start of the track and in the direction of the grid, is numbered incrementally starting from 1.</p>
+      <div class="example">
+        <section>
+<pre>
+  <code>
+    grid-row-start:    2;
+    grid-row-end:      3;
+    grid-column-start: 2;
+    grid-column-end:   3;
+  </code>
+</pre>
+          <p>This 2-column by 3-row grid results in 3 column lines and 4 row lines. Item 1 was repositioned by row and column line numbers.</p>
+          <p>If an item spans only one row or column, grid-row/column-end is not necessary.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="grcse">
+            <div class="bc-teal">One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+            <div>Six</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <div class="example">
+        <section>
+<pre>
+  <code>
+    grid-row:    2;
+    grid-column: 3 / 4;
+  </code>
+</pre>
+          <p>grid-row is shorthand for grid-row-start and grid-row-end.</p>
+          <p>grid-column is shorthand for grid-column-start and grid-column-end.</p>
+          <p>If one value is provided, it specifies grid-row/column-start.</p>
+          <p>If two values are specified, the first value corresponds to grid-row/column-start and the second grid-row/column-end, and must be separated by a forward slash /.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="grc">
+            <div class="bc-teal">One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+            <div>Six</div>
+          </div>
+        </aside>
+      </div>
+      <div class="space"></div>
+      <div class="example">
+        <section>
+<pre>
+  <code>
+    grid-area: 2 / 2 / 3 / 3
+  </code>
+</pre>
+          <p>grid-area is shorthand for grid-row-start, grid-column-start, grid-row-end and grid-column-end.</p>
+          <p>If four values are specified, the first corresponds to grid-row-start, the second grid-column-start, the third grid-row-end and the fourth grid-column-end.</p>
+        </section>
+        <aside>
+          <div class="wrapper" id="gra">
+            <div class="bc-teal">One</div>
+            <div>Two</div>
+            <div>Three</div>
+            <div>Four</div>
+            <div>Five</div>
+            <div>Six</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+    <section class="section">
+      <h3>References</h3>
+      <ul>
+        <li>https://devpractical.com/display-html-tags-as-plain-text/</li>
+        <li>https://css-tricks.com/snippets/css/complete-guide-grid/#top-of-site</li>
+        <li>https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
